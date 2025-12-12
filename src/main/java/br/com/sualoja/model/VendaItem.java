@@ -32,12 +32,26 @@ public class VendaItem {
     public VendaItem(Produto produto, Integer quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
-        this.precoUnitario = produto.getPreco(); 
+        this.precoUnitario = produto.getPrecoVenda(); 
         this.custoUnitario = new BigDecimal("10.00"); 
     }
 
     // Getters e Setters...
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Venda getVenda() { return venda; }
     public void setVenda(Venda venda) { this.venda = venda; }
+
+    public Produto getProduto() { return produto; }
+    public void setProduto(Produto produto) { this.produto = produto; }
+
     public BigDecimal getPrecoUnitario() { return precoUnitario; }
+    public void setPrecoUnitario(BigDecimal precoUnitario) { this.precoUnitario = precoUnitario; }
+
     public Integer getQuantidade() { return quantidade; }
+    public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
+
+    public BigDecimal getCustoUnitario() { return custoUnitario; }
+    public void setCustoUnitario(BigDecimal custoUnitario) { this.custoUnitario = custoUnitario; }
 }

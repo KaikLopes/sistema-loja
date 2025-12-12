@@ -56,9 +56,6 @@ public class Produto {
     // Construtor padrão (Obrigatório)
     public Produto() {
     }
-
-    // --- GETTERS E SETTERS ---
-    // Ferramentas para acessar e modificar cada um dos atributos acima
     
     public Integer getId() {
         return id;
