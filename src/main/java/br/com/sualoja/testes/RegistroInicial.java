@@ -12,51 +12,49 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 // Este é o nosso "script" para a primeira carga de dados no sistema.
-public class RegistroInicial {
+// ... imports
 
+public class RegistroInicial {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("loja-virtual");
         EntityManager em = factory.createEntityManager();
+        
+        // Criando os DAOs (assumindo que você criou as classes DAO básicas)
+        ProdutoDAO produtoDao = new ProdutoDAO(em);
+        UsuarioDAO usuarioDao = new UsuarioDAO(em);
+        ClienteDAO clienteDao = new ClienteDAO(em);
+        VendaDAO vendaDao = new VendaDAO(em); // Esse DAO só precisa do método cadastrar(Venda v)
 
-        // Criamos todos os "tratadores" que vamos usar
-        CategoriaDAO categoriaDAO = new CategoriaDAO(em);
-        FornecedorDAO fornecedorDAO = new FornecedorDAO(em);
-        ProdutoDAO produtoDAO = new ProdutoDAO(em);
-
-        // --- Início da Transação: tudo abaixo acontece de uma vez ---
         em.getTransaction().begin();
 
-        // 1. DADOS DA CATEGORIA
-        Categoria novaCategoria = new Categoria("Ferramentas Elétricas");
-        categoriaDAO.cadastrar(novaCategoria);
-        System.out.println(">>> CATEGORIA CADASTRADA: " + novaCategoria.getNome() + " | ID: " + novaCategoria.getId());
+        // 1. Cadastrando um Usuário (Vendedor)
+        Usuario vendedor = new Usuario("Kaik Lopes", "111.222.333-44", "kaik.dev", "senha123");
+        usuarioDao.cadastrar(vendedor); 
+        // O Hibernate salva em 'Pessoas' e depois em 'Usuarios' automaticamente!
 
-        // 2. DADOS DO FORNECEDOR
-        Fornecedor novoFornecedor = new Fornecedor("Sorriso Ferramentas", "12.345.678/0001-99");
-        novoFornecedor.setContatoNome("Ana Silva");
-        fornecedorDAO.cadastrar(novoFornecedor);
-        System.out.println(">>> FORNECEDOR CADASTRADO: " + novoFornecedor.getNomeFantasia() + " | ID: " + novoFornecedor.getId());
+        // 2. Cadastrando um Cliente
+        Cliente cliente = new Cliente("Lucas Pereira", "999.888.777-66", "8399999-0000", "Rua do IFPB, Cajazeiras");
+        clienteDao.cadastrar(cliente);
 
-        // 3. DADOS DO PRODUTO
-        Produto novoProduto = new Produto();
-        novoProduto.setNome("Furadeira Parafusadeira Impacto Kit 2 Baterias 21v Maleta");
-        novoProduto.setDescricao("Furadeira e Parafusadeira de Impacto com kit e maleta.");
-        novoProduto.setPrecoVenda(new BigDecimal("145.41")); // Lembre-se do ponto!
-        novoProduto.setQuantidadeEstoque(10);
-        novoProduto.setUnidadeMedida("UN");
+        // 3. Recuperando um Produto existente (exemplo: ID 1)
+        // Se não tiver, crie um antes igual você fez na sua imagem
+        Produto produto = produtoDao.buscarPorId(1L); 
 
-        // Ligando o produto à categoria e ao fornecedor que acabamos de criar
-        novoProduto.setCategoria(novaCategoria);
-        novoProduto.setFornecedor(novoFornecedor);
+        // 4. Realizando uma VENDA
+        Venda venda = new Venda(cliente, vendedor);
+        
+        // Criando o item da venda (ex: 2 unidades do produto)
+        VendaItem item = new VendaItem(produto, 2);
+        
+        // Adicionando item na venda (a venda calcula o total sozinha)
+        venda.adicionarItem(item);
 
-        produtoDAO.cadastrar(novoProduto);
-        System.out.println(">>> PRODUTO CADASTRADO: " + novoProduto.getNome() + " | ID: " + novoProduto.getId());
+        // 5. Salvando a Venda (o Cascade salva os Itens automaticamente)
+        vendaDao.cadastrar(venda);
 
-        // --- Fim da Transação: Salva tudo no banco de dados ---
         em.getTransaction().commit();
-        System.out.println("\n>>> SUCESSO! Transação confirmada e todos os dados foram salvos!");
-
+        
+        System.out.println("Venda realizada com sucesso! ID: " + venda.getId());
         em.close();
-        factory.close();
     }
 }
