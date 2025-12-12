@@ -45,5 +45,22 @@ public class Venda {
         this.valorTotal = this.valorTotal.add(item.getPrecoUnitario().multiply(new BigDecimal(item.getQuantidade())));
     }
 
-    // Getters e Setters...
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public LocalDateTime getDataVenda() { return dataVenda; }
+    public void setDataVenda(LocalDateTime dataVenda) { this.dataVenda = dataVenda; }
+
+    public BigDecimal getValorTotal() { return valorTotal; }
+    public void setValorTotal(BigDecimal valorTotal) { this.valorTotal = valorTotal; }
+
+    public Cliente getCliente() { return cliente; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+
+    public Usuario getVendedor() { return vendedor; }
+    public void setVendedor(Usuario vendedor) { this.vendedor = vendedor; }
+
+    public List<VendaItem> getItens() { return itens; }
+    public void setItens(List<VendaItem> itens) { this.itens = itens; }
 }

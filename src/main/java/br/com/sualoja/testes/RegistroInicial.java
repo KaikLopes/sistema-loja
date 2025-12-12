@@ -4,9 +4,16 @@ import java.math.BigDecimal;
 import br.com.sualoja.dao.CategoriaDAO;
 import br.com.sualoja.dao.FornecedorDAO;
 import br.com.sualoja.dao.ProdutoDAO;
+import br.com.sualoja.dao.UsuarioDAO;
+import br.com.sualoja.dao.ClienteDAO;
+import br.com.sualoja.dao.VendaDAO;
 import br.com.sualoja.model.Categoria;
 import br.com.sualoja.model.Fornecedor;
 import br.com.sualoja.model.Produto;
+import br.com.sualoja.model.Usuario;
+import br.com.sualoja.model.Cliente;
+import br.com.sualoja.model.Venda;
+import br.com.sualoja.model.VendaItem;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -38,7 +45,7 @@ public class RegistroInicial {
 
         // 3. Recuperando um Produto existente (exemplo: ID 1)
         // Se não tiver, crie um antes igual você fez na sua imagem
-        Produto produto = produtoDao.buscarPorId(1L); 
+        Produto produto = produtoDao.buscarPorId(1); 
 
         // 4. Realizando uma VENDA
         Venda venda = new Venda(cliente, vendedor);
