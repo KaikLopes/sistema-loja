@@ -1,6 +1,6 @@
 # 🏗️ Sistema de Gerenciamento - Loja de Materiais de Construção
 
-Este repositório contém o backend de um sistema para gerenciamento de uma loja de materiais de construção, desenvolvido como parte dos meus estudos para aprofundamento técnico em Engenharia de Software e Banco de Dados.
+Este repositório contém o backend e o frontend de um sistema para gerenciamento de uma loja de materiais de construção, desenvolvido como parte dos meus estudos para aprofundamento técnico em Engenharia de Software, DOM e Banco de Dados.
 
 ## 🎯 Objetivo
 
@@ -20,7 +20,7 @@ O foco principal deste projeto é **aprofundar meus conhecimentos** em:
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
 - **Build / execução:** Maven (`mvn spring-boot:run`)
 - **Modelagem:** draw.io / dbdiagram.io
-- **Observação:** Artefatos de build ficam em `target/` (recomendado adicionar em `.gitignore`)
+- **Observação:** Artefatos de build ficam em `target/`
 
 ## 🚧 Status do projeto
 
