@@ -1,13 +1,11 @@
 :root {
-    --main-bg-color: #009d63;
-    --main-text-color: #009d63;
-    --second-text-color: #bbbec5;
-    --second-bg-color: #c1efde;
+    --primary-color: #4a6cf7;
+    --sidebar-bg: #111827;
 }
 
 body {
-    background-color: #f5f6f8;
-    overflow-x: hidden;
+    background-color: #f3f4f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #wrapper {
@@ -16,52 +14,45 @@ body {
 
 #sidebar-wrapper {
     min-height: 100vh;
-    margin-left: -15rem;
+    width: 250px;
+    background-color: var(--sidebar-bg) !important;
     transition: margin 0.25s ease-out;
-    width: 15rem;
 }
 
-#sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.2rem;
+#sidebar-wrapper .list-group-item {
+    border: none;
+    padding: 15px 25px;
+    font-size: 0.95rem;
+    color: #9ca3af !important; /* Cinza claro */
 }
 
-#sidebar-wrapper .list-group {
-    width: 15rem;
+#sidebar-wrapper .list-group-item:hover {
+    color: #fff !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* Link ativo */
+.active-link {
+    color: #fff !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 0 25px 25px 0; /* Efeito arredondado */
+    font-weight: 600;
 }
 
 #page-content-wrapper {
     min-width: 100vw;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-    margin-left: 0;
-}
-
+/* Responsividade do Menu */
 @media (min-width: 768px) {
-    #sidebar-wrapper {
-        margin-left: 0;
-    }
-
     #page-content-wrapper {
         min-width: 0;
         width: 100%;
     }
-
-    #wrapper.toggled #sidebar-wrapper {
-        margin-left: -15rem;
-    }
 }
 
-.list-group-item {
+/* Efeito de cards */
+.card {
     border: none;
-    padding: 20px 30px;
-    color: var(--second-text-color);
-}
-
-.list-group-item.active {
-    background-color: transparent;
-    color: var(--main-text-color);
-    font-weight: bold;
-    border: none;
+    border-radius: 10px;
 }
