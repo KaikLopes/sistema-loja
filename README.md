@@ -12,26 +12,38 @@ O foco principal deste projeto é **aprofundar meus conhecimentos** em:
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Linguagem:** Java 25
-* **Gerenciador de Dependências:** Maven
-* **ORM:** Hibernate / JPA
-* **Banco de Dados:** PostgreSQL
-* **Ferramentas de Modelagem:** draw.io / dbdiagram.io
+- **Linguagem:** Java 21
+- **Framework:** Spring Boot 3.2.3 (Spring Web, Spring Data JPA)
+- **ORM:** Hibernate (via Spring Data JPA)
+- **Banco de Dados:** PostgreSQL
+- **Gerenciador de Dependências:** Maven
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
+- **Build / execução:** Maven (`mvn spring-boot:run`)
+- **Modelagem:** draw.io / dbdiagram.io
+- **Observação:** Artefatos de build ficam em `target/` (recomendado adicionar em `.gitignore`)
+
+## 🚧 Status do projeto
+
+**Estado:** Em andamento — o projeto está em evolução ativa e receberá melhorias, refatorações, testes e documentação adicionais.
 
 ## 🚀 Como Executar
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/KaikLopes/sistema-loja.git
-    ```
+1. **Clone o repositório (novo endereço):**
+   ```bash
+   git clone https://github.com/KaikLopes/Sistema_Loja.git
+   ```
 
-2.  **Configuração:**
-    * Crie um banco de dados PostgreSQL chamado `lojinha_construcao`.
-    * Ajuste as credenciais no arquivo `src/main/resources/META-INF/persistence.xml`.
+2. **Configuração:**
+   * Ajuste as credenciais e a URL do banco em `src/main/resources/application.properties`.
 
-3.  **Execução:**
-    * Importe o projeto como Maven na sua IDE.
-    * Execute a classe `RegistroInicial.java` para popular o banco e testar as operações.
+3. **Execução:**
+   ```bash
+   mvn spring-boot:run
+   ```
+   Ou execute a classe `br.com.sualoja.LojaApplication` pela sua IDE.
+
+4. **Acessar:**
+   * A aplicação estará disponível em `http://localhost:8080` (se aplicável).
 
 ---
 
