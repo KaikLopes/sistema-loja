@@ -3,25 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sua Loja - Produtos</title>
+    <title>Painel Admin - Sua Loja</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Ícones para botões -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Sua Loja de Construção</h1>
-    </header>
+    <div class="dashboard-container">
+        <!-- Sidebar de Navegação -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🏗️ Sua Loja</h2>
+            </div>
+            <nav>
+                <button onclick="mostrarTela('lista')" class="active"><i class="fas fa-box"></i> Produtos</button>
+                <button onclick="mostrarTela('form')"><i class="fas fa-plus-circle"></i> Novo Produto</button>
+            </nav>
+        </aside>
 
-    <main>
-        <h2>Produtos Disponíveis</h2>
-        <div id="lista-produtos" class="grid-produtos">
-            <!-- Os produtos serão inseridos aqui pelo JavaScript -->
-            <p>Carregando produtos...</p>
-        </div>
-    </main>
+        <!-- Conteúdo Principal -->
+        <main class="content">
+            <header>
+                <h1>Gerenciamento de Estoque</h1>
+            </header>
 
-    <footer>
-        <p>&copy; 2024 Sistema Loja</p>
-    </footer>
+            <!-- Tela de Listagem -->
+            <section id="tela-lista" class="active-section">
+                <div class="toolbar">
+                    <input type="text" id="busca" placeholder="Buscar produto..." onkeyup="filtrarProdutos()">
+                </div>
+                <div id="lista-produtos" class="grid-produtos">
+                    <p>Carregando produtos...</p>
+                </div>
+            </section>
+
+            <!-- Tela de Formulário (Cadastro/Edição) -->
+            <section id="tela-form" class="hidden-section">
+                <h2>Cadastrar / Editar Produto</h2>
+                <form id="form-produto">
+                    <input type="hidden" id="prod-id">
+                    
+                    <label>Nome do Produto</label>
+                    <input type="text" id="prod-nome" required>
+
+                    <label>Preço de Venda (R$)</label>
+                    <input type="number" id="prod-preco" step="0.01" required>
+
+                    <label>Quantidade em Estoque</label>
+                    <input type="number" id="prod-estoque" required>
+
+                    <div class="form-actions">
+                        <button type="button" onclick="mostrarTela('lista')" class="btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn-save">Salvar Produto</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
